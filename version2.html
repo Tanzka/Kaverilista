@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaverilista</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="links">
+        <a href="index.html">Versio 1</a>
+        <a href="version2.html">Versio 2</a>
+    </div>
+    <h1>Kaverilista V2</h1>
+    <div id="main">
+        <form id="friendForm">
+            <input id="kaveri" type="text" value="Syötä nimi">
+            <button type="button" onclick="addFriend()">Lisää kaveri</button>
+            <button type="button" onclick="removeFriend()">Poista kaveri</button>
+            <button type="button" onclick="sortFriends()">Järjestä</button>
+        </form>
+    </div>
+    <ol id="friendsList"></ol>
+
+    <script>
+        var kaverit = [];
+
+        function updateList() {
+            var list = document.getElementById("friendsList");
+            list.innerHTML = "";
+            kaverit.forEach(function(friend) {
+                var listItem = document.createElement("li");
+                listItem.textContent = friend;
+                list.appendChild(listItem);
+            });
+        }
+
+        function addFriend() {
+            var friendInput = document.getElementById("kaveri");
+            var friendName = friendInput.value.trim();
+            if (friendName) {
+                kaverit.push(friendName);
+                updateList();
+                friendInput.value = "";
+            }
+        }
+
+        function removeFriend() {
+            var friendInput = document.getElementById("kaveri");
+            var friendName = friendInput.value.trim();
+            var index = kaverit.indexOf(friendName);
+            if (index !== -1) {
+                kaverit.splice(index, 1);
+                updateList();
+                friendInput.value = "";
+            } else {
+                alert("Kaveria ei löytynyt listalta!");
+            }
+        }
+
+        function sortFriends() {
+            kaverit.sort();
+            updateList();
+        }
+        
+    </script>
+</body>
+</html>

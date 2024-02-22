@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kaverilista</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="links">
+        <a href="index.html">Versio 1</a>
+        <a href="version2.html">Versio 2</a>
+    </div>
+    <h1>Kaverilista V1</h1>
+    <p>Ohjelma kysyy kymmenen nimeä, ja tulostaa ne listaan.</p>
+
+    <button onclick="listOfFriends()">Aloita</button>
+
+    <ol id="friendsList"></ol>
+    <script>
+        function listOfFriends() {
+            var friends = [];
+            for (var i = 0; i < 10; i++) {
+                var friendName = prompt("Anna kaverin nimi: " + (i + 1));
+                if (friendName) {
+                    friends.push(friendName);
+                } else {
+                    alert("Sinun täytyy syöttää kaverin nimi " + (i + 1));
+                    return;
+                }
+            }
+
+            var list = document.getElementById("friendsList");
+            list.innerHTML = "";
+            friends.forEach(function(friend) {
+                var listItem = document.createElement("li");
+                listItem.textContent = friend;
+                list.appendChild(listItem);
+            });
+        }
+    </script>
+</body>
+</html>
